@@ -1,0 +1,32 @@
+.App {
+  text-align: center;
+}
+
+#display {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    cursor: none;
+    background: linear-gradient(174deg, #274b84, #502784);
+   
+}
+
+#controls {
+    width: 30vw;
+    height: 30vh;
+    background-color: rgba(36, 31, 104, 0.5);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}
+
+#myImg{
+    position: absolute;
+    
+}
+
+.allImgs {
+    position: absolute;
+}
