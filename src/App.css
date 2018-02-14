@@ -8,7 +8,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    cursor: none;
+/*    cursor: none;*/
     background: linear-gradient(174deg, #274b84, #502784);
    
 }
