@@ -11,7 +11,8 @@ class App extends Component {
             myImg2:require("./imgs/2.png"),
             allUsers:[],
             myid:null,
-            showDisplay:false
+            showDisplay:false,
+            stickers:[]
         }
     this.handleImg=this.handleImg.bind(this);
     this.handleDisplay=this.handleDisplay.bind(this);
@@ -46,7 +47,21 @@ class App extends Component {
                         src: this.refs["u"+this.state.myid].src
                     })
                 });
+            
+            this.refs.theDisplay.addEventListener("click", (ev)=>{
+                this.socket.emit("stick", {
+                    x:ev.pageX,
+                    y:ev.pageY,
+                    src:this.refs["u"+this.state.myid].src
+                })
+            })
         });
+        
+        this.socket.on("newSticker",(data)=>{
+            this.setState({
+                stickers:data
+            });
+        })
         
         this.socket.on("newmove", (data)=>{
             
@@ -78,6 +93,13 @@ class App extends Component {
           )
       })
       
+      var allstickers = this.state.stickers.map((obj ,i)=>{
+          var mstyle = {left:obj.x,top:obj.y};
+          return(
+            <img style={mstyle} key={i} src={obj.src} height={50} className="allImgs"/>
+          )
+      })
+      
       var comp = null;
       
       if(this.state.showDisplay === false){
@@ -91,7 +113,7 @@ class App extends Component {
         <div>
               <div ref ="theDisplay" id="display">
                 {allImgs}
-                 
+                {allstickers}
                 </div>
         
         
